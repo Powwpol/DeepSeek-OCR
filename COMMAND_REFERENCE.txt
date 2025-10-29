@@ -1,0 +1,167 @@
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                  DEEPSEEK OCR MCP SERVER - COMMAND REFERENCE             ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+
+📋 QUICK COMMANDS
+
+  Check System:
+    python3 check_installation.py
+
+  Install Dependencies:
+    pip install -r mcp_requirements.txt
+
+  Test Server:
+    python3 test_mcp_server.py
+    python3 test_mcp_server.py /path/to/image.jpg
+
+  Launch Server:
+    ./launch_mcp_server.sh
+    # or
+    python3 deepseek_ocr_mcp_server.py
+
+  View Examples:
+    python3 examples_usage.py
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📚 DOCUMENTATION FILES
+
+  INDEX.md              - Documentation navigation
+  QUICKSTART.md         - Quick start (15-20 min)
+  MCP_README.md         - Complete reference
+  DEPLOYMENT_GUIDE.md   - Production deployment
+  PROJECT_SUMMARY.md    - Technical overview
+  FINAL_SUMMARY.txt     - Delivery summary
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🛠️ MCP TOOLS (Use via MCP client)
+
+  1. process_image_ocr
+     {
+       "image_source": "/path/or/base64",
+       "image_type": "path|base64",
+       "prompt_template": "document_markdown",
+       "crop_mode": true
+     }
+
+  2. process_pdf_ocr
+     {
+       "pdf_path": "/path/to/file.pdf",
+       "prompt_template": "document_markdown",
+       "crop_mode": true
+     }
+
+  3. list_prompt_templates
+     {}
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎯 PROMPT TEMPLATES
+
+  document_markdown    Most common - converts docs to markdown
+  document_ocr         General document OCR with layout
+  free_ocr            Simple text extraction
+  parse_figure        For charts, graphs, diagrams
+  describe_image      Detailed image description
+  custom              Use your own prompt
+
+═══════════════════════════════════════════════════════════════════════════════
+
+⚙️ ENVIRONMENT VARIABLES
+
+  export DEEPSEEK_OCR_MODEL_PATH="deepseek-ai/DeepSeek-OCR"
+  export CUDA_VISIBLE_DEVICES="0"
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🔧 MCP CLIENT CONFIGURATION
+
+  For Claude Desktop:
+    ~/.config/Claude/claude_desktop_config.json (Linux)
+    ~/Library/Application Support/Claude/claude_desktop_config.json (Mac)
+    %APPDATA%\Claude\claude_desktop_config.json (Windows)
+
+  Add:
+    {
+      "mcpServers": {
+        "deepseek-ocr": {
+          "command": "python3",
+          "args": ["/absolute/path/to/deepseek_ocr_mcp_server.py"],
+          "env": {
+            "DEEPSEEK_OCR_MODEL_PATH": "deepseek-ai/DeepSeek-OCR"
+          }
+        }
+      }
+    }
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📊 FILES OVERVIEW
+
+  deepseek_ocr_mcp_server.py   Main server (17KB)
+  launch_mcp_server.sh         Launcher
+  test_mcp_server.py           Test suite
+  check_installation.py        System checker
+  examples_usage.py            Examples
+  mcp_requirements.txt         Dependencies
+  example_mcp_config.json      Config template
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🚀 TYPICAL WORKFLOW
+
+  1. python3 check_installation.py      # Verify system
+  2. pip install -r mcp_requirements.txt # Install deps
+  3. python3 test_mcp_server.py         # Test
+  4. Edit MCP client config              # Configure
+  5. Restart MCP client                  # Reload config
+  6. Use from AI assistant               # Start OCR-ing!
+
+═══════════════════════════════════════════════════════════════════════════════
+
+💡 TIPS
+
+  • Use absolute paths in config files
+  • Test with small images first
+  • Enable crop_mode for large images (>640x640)
+  • Use document_markdown template for best results
+  • Pre-download model to avoid delays
+  • Monitor GPU memory with nvidia-smi
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🆘 TROUBLESHOOTING
+
+  Issue: Packages not found
+    → pip install -r mcp_requirements.txt --force-reinstall
+
+  Issue: CUDA out of memory
+    → Reduce DEFAULT_GPU_MEMORY_UTILIZATION in server.py
+    → Reduce MAX_CROPS in config.py
+
+  Issue: Model not found
+    → huggingface-cli download deepseek-ai/DeepSeek-OCR
+    → Check DEEPSEEK_OCR_MODEL_PATH
+
+  Issue: Slow performance
+    → Ensure GPU is used (check nvidia-smi)
+    → Use crop_mode=False for small images
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📖 LEARN MORE
+
+  Read:       INDEX.md (documentation index)
+  Quick:      QUICKSTART.md (6 steps)
+  Reference:  MCP_README.md (complete docs)
+  Deploy:     DEPLOYMENT_GUIDE.md (production)
+  Technical:  PROJECT_SUMMARY.md (architecture)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ PROJECT STATUS: COMPLETE AND READY TO USE
+
+Start with: python3 check_installation.py
+
+═══════════════════════════════════════════════════════════════════════════════

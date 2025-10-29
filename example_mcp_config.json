@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "deepseek-ocr": {
+      "command": "python",
+      "args": [
+        "/workspace/deepseek_ocr_mcp_server.py"
+      ],
+      "env": {
+        "DEEPSEEK_OCR_MODEL_PATH": "deepseek-ai/DeepSeek-OCR",
+        "CUDA_VISIBLE_DEVICES": "0"
+      }
+    }
+  }
+}

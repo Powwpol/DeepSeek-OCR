@@ -1,0 +1,13 @@
+# MCP Server Requirements
+mcp>=0.1.0
+transformers==4.46.3
+tokenizers==0.20.3
+vllm>=0.6.0
+torch>=2.0.0
+PyMuPDF
+img2pdf
+einops
+easydict
+addict 
+Pillow
+numpy
